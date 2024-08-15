@@ -1,0 +1,88 @@
+import React from "react";
+import '../Pages/Lobby.css'
+// const Lobby = () => {
+class Lobby extends React.Component{  
+    constructor(props){
+        super(props);
+        this.state = {
+            firstName:'',
+            lastname : '',
+            email : '',
+            possword : '',
+            errMsg : '',
+            posswordMsg : '' 
+        }
+        this.onChangeHandler = this.onChangeHandler.bind(this);
+         this.submitHandler = this.submitHandler.bind(this);
+
+    }
+    onChangeHandler(e){
+        e.preventDefault();
+        this.setState({
+            [e.target.value]: e.target.value
+        })
+        this.state.errMsg = ""
+        this.state.posswordMsg = ""
+    }
+    submitHandler(e){
+        e.preventDefault();
+        if(this.state.firstName == ""){
+            this.setState({
+                errMsg : 'Please Enter the FirstName'
+            })
+        }
+        else if(this.state.posswordMsg == ""){
+            this.setState({
+                posswordMsg : 'Please Enter the last Name'
+            })
+        }
+        else{
+        console.log("form is submitted");
+        }
+    }
+  render(){  
+     const {firstName,lastname,email,possword,errMsg,posswordMsg} = this.state
+    return(
+        <div>
+            <center> 
+            <form onSubmit={this.submitHandler}>
+                <label className="form-label">FirstName</label>
+                <input type="text" 
+                className="form-control"   
+                name="firstname" 
+                value={firstName} 
+                onChange={this.onChangeHandler }
+                />
+                <p style={{'color ':'red'}}>{errMsg}</p>
+                <label className="form-label">LastName</label>
+                <input type="text" 
+                className="form-control"   
+                name="lastname" 
+                value={lastname} 
+                onChange={this.onChangeHandler} 
+                />
+                <p style={{'color' : 'red'}}>{posswordMsg}</p>
+                <label className="form-label">Email</label>
+                <input type="text" 
+                className="form-control"   
+                name="email" 
+                value={email} 
+                onChange={this.onChangeHandler} />
+                <label className="form-label">Possword</label>
+                <input type="text" 
+                className="form-control"   
+                name="possword" 
+                value={possword} 
+                onChange={this.onChangeHandler} 
+                />
+                <button className="primary" style={{'marginTop':'20px' }}>Submit</button>
+            </form>
+            </center>
+        </div>
+    )
+  }
+}
+
+export default Lobby;
+
+{/* <div class="mx-auto flex flex-col w-full bg-gradient-left dark:bg-gradient-left-dark border-t border-primary/10 dark:border-primary-dark/10 " style="contain:content"><div class="flex-col gap-2 flex grow w-full my-20 lg:my-32 mx-auto items-center"><div class="w-full"><div class="mx-auto flex flex-col max-w-4xl"><div class="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80 flex flex-col items-center justify-center"><h2 class="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">Join a community <br class="hidden lg:inline">of millions</h2><p class="max-w-3xl mx-auto text-lg lg:text-xl text-secondary dark:text-secondary-dark leading-normal">You’re not alone. Two million developers from all over the world visit the React docs every month. React is something that people and teams can agree on.</p></div></div><div class="relative flex overflow-x-hidden overflow-y-visible w-auto"><div class="w-full py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee lg:animate-large-marquee" style="animation-play-state: running;"><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl"><img loading="eager" src="/images/home/community/react_conf_fun.webp" alt="People singing karaoke at React Conf" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]"><img loading="eager" src="/images/home/community/react_india_sunil.webp" alt="Sunil Pai speaking at React India" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl"><img loading="eager" src="/images/home/community/react_conf_hallway.webp" alt="A hallway conversation between two people at React Conf" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]"><img loading="eager" src="/images/home/community/react_india_hallway.webp" alt="A hallway conversation at React India" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl"><img loading="eager" src="/images/home/community/react_conf_elizabet.webp" alt="Elizabet Oliveira speaking at React Conf" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]"><img loading="eager" src="/images/home/community/react_india_selfie.webp" alt="People taking a group selfie at React India" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl"><img loading="eager" src="/images/home/community/react_conf_nat.webp" alt="Nat Alison speaking at React Conf" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]"><img loading="eager" src="/images/home/community/react_india_team.webp" alt="Organizers greeting attendees at React India" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div></div><div aria-hidden="true" class="w-full absolute top-0 py-12 lg:py-20 whitespace-nowrap flex flex-row animate-marquee2 lg:animate-large-marquee2" style="animation-play-state: running;"><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl"><img loading="eager" src="/images/home/community/react_conf_fun.webp" alt="People singing karaoke at React Conf" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]"><img loading="eager" src="/images/home/community/react_india_sunil.webp" alt="Sunil Pai speaking at React India" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl"><img loading="eager" src="/images/home/community/react_conf_hallway.webp" alt="A hallway conversation between two people at React Conf" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]"><img loading="eager" src="/images/home/community/react_india_hallway.webp" alt="A hallway conversation at React India" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl"><img loading="eager" src="/images/home/community/react_conf_elizabet.webp" alt="Elizabet Oliveira speaking at React Conf" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]"><img loading="eager" src="/images/home/community/react_india_selfie.webp" alt="People taking a group selfie at React India" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 rotate-2 group-hover:rotate-[-1deg] group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl"><img loading="eager" src="/images/home/community/react_conf_nat.webp" alt="Nat Alison speaking at React Conf" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div><div class="group flex justify-center px-5 min-w-[50%] lg:min-w-[25%] rounded-2xl relative"><div class="h-auto relative rounded-2xl overflow-hidden before:-skew-x-12 before:absolute before:inset-0 before:-translate-x-full group-hover:before:animate-[shimmer_1s_forwards] before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent transition-all ease-in-out duration-300 group-hover:rotate-1 group-hover:scale-110 group-hover:shadow-lg lg:group-hover:shadow-2xl rotate-[-2deg]"><img loading="eager" src="/images/home/community/react_india_team.webp" alt="Organizers greeting attendees at React India" class="aspect-[4/3] h-full w-full flex object-cover rounded-2xl bg-gray-10 dark:bg-gray-80"></div></div></div></div><div class="mx-auto flex flex-col max-w-4xl"><div class="px-5 lg:px-0 max-w-4xl lg:text-center text-white text-opacity-80 flex flex-col items-center justify-center"><p class="max-w-3xl mx-auto text-lg lg:text-xl text-secondary dark:text-secondary-dark leading-normal">This is why React is more than a library, an architecture, or even an ecosystem. React is a community. It’s a place where you can ask for help, find opportunities, and meet new friends. You will meet both developers and designers, beginners and experts, researchers and artists, teachers and students. Our backgrounds may be very different, but React lets us all create user interfaces together.</p></div></div></div><div class="mt-20 px-5 lg:px-0 mb-6 max-w-4xl text-center text-opacity-80"><svg width="100%" height="100%" viewBox="-10.5 -9.45 21 18.9" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-link dark:text-link-dark w-24 lg:w-28 mb-10 lg:mb-8 mt-12 h-auto mx-auto self-start"><circle cx="0" cy="0" r="2" fill="currentColor"></circle><g stroke="currentColor" stroke-width="1" fill="none"><ellipse rx="10" ry="4.5"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(60)"></ellipse><ellipse rx="10" ry="4.5" transform="rotate(120)"></ellipse></g></svg><h2 class="leading-xl font-display text-primary dark:text-primary-dark font-semibold text-5xl lg:text-6xl -mt-4 mb-7 w-full max-w-3xl lg:max-w-xl">Welcome to the <br class="hidden lg:inline">React community</h2><a class="active:scale-[.98] transition-transform inline-flex font-bold items-center outline-none focus:outline-none focus-visible:outline focus-visible:outline-link focus:outline-offset-2 focus-visible:dark:focus:outline-link-dark leading-snug bg-link text-white hover:bg-opacity-80 text-lg py-3 rounded-full px-4 sm:px-6" aria-label="Take the Tutorial" target="_self" href="/learn">Get Started</a></div></div></div> */}

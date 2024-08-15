@@ -1,0 +1,41 @@
+.quick-courses{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    padding: 0px 80px;
+    position: relative;
+    bottom: 25px;
+  
+  }
+  .quick-courses .quick-card{
+    flex: 1;
+    margin: 5px 20px;
+    box-shadow: 0 0 15px 1px rgba(0,0,0,0.15);
+    background: #fff;
+  }
+  .quick-courses .quick-card a:hover{
+    transition: 1s;
+    transform: scale;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
+
+  }
+  .quick-courses .quick-card a{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #727171;
+    text-decoration: none;
+    /* background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); */
+  }
+  .quick-courses b{
+    color: #000;
+  }
+  .quick-courses .courses-link{
+    color: #0c5397;
+  }
+
+  
+   
